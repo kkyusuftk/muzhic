@@ -1,7 +1,15 @@
+import { useEffect } from "react";
+import { getRequestWithHeaders } from "./api";
 import styles from "./app.module.css";
 
 function App() {
-	console.log(import.meta.env);
+	useEffect(() => {
+		getRequestWithHeaders(
+			"https://api.themoviedb.org/3/authentication/token/new",
+		)
+			.then((value) => value.json())
+			.then((data) => console.log(data));
+	}, []);
 	return <div className={styles.container}>Pitchure - The movies app</div>;
 }
 
