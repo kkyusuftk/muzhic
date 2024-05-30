@@ -2,10 +2,24 @@ html, body {
   height: 100%;
 }
 
+* {
+  font-family: Arvo-Regular;
+}
+
 body {
   margin: 0;
 }
 
 #root {
   height: 100%;
+}
+
+@font-face {
+  font-family: 'Arvo-Regular';
+  src: url('../assets/font/Arvo/Arvo-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Arvo-Bold';
+  src: url('../assets/font/Arvo/Arvo-Bold.ttf');
 }
