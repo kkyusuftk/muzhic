@@ -4,8 +4,7 @@ import styles from "./home.module.css";
 export const Home = () => {
 	return (
 		<div className={styles.container}>
-			<div>Get started with Spotify</div>
-
+			<div>Get started with Muzhic</div>
 			<button type="button" onClick={triggerAuthorizationFlow}>
 				Authorize
 			</button>
