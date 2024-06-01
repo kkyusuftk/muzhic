@@ -1,4 +1,22 @@
+import { useEffect } from "react";
+import getToken from "../../api/accessToken";
+import useAuthStore from "../../store/auth";
+import { useNavigate } from "react-router-dom";
+
 export const Callback = () => {
-	// call the access token api from here
-	return <div>Callback</div>;
+  const { accessToken, setAccessToken } = useAuthStore();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let code = urlParams.get("code");
+    const res = getToken(code);
+    res.then((data) => {
+      console.log(data);
+      console.log(data.access_token);
+      setAccessToken(data.access_token);
+    });
+    navigate("/");
+  }, []);
+
+  return <div>Callback</div>;
 };
