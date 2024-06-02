@@ -1,21 +1,28 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import getToken from "../../api/accessToken";
 import useAuthStore from "../../store/auth";
-import { useNavigate } from "react-router-dom";
+
+let tokenFetchApiCalled = false;
 
 export const Callback = () => {
-  const { accessToken, setAccessToken } = useAuthStore();
-  const navigate = useNavigate();
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get("code");
-    getToken(code).then((data) => {
-      console.log(data);
-      console.log(data.access_token);
-      setAccessToken(data.access_token);
-      navigate("/");
-    });
-  }, []);
+	const { setAccessToken } = useAuthStore();
+	const navigate = useNavigate();
 
-  return <div>Callback</div>;
+	const fetchToken = async () => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const code = urlParams.get("code");
+		const data = await getToken(code);
+		setAccessToken(data.access_token);
+		tokenFetchApiCalled = true;
+		navigate("/");
+	};
+
+	useEffect(() => {
+		if (!tokenFetchApiCalled) {
+			fetchToken();
+		}
+	}, []);
+
+	return <div>Callback</div>;
 };
