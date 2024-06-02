@@ -4,7 +4,7 @@ export default async function fetchProfile(token) {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
-  const res = await result.json();
+  const data = await result.json();
 
-  return res;
+  return data;
 }

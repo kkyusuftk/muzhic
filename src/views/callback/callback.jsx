@@ -9,13 +9,12 @@ export const Callback = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     let code = urlParams.get("code");
-    const res = getToken(code);
-    res.then((data) => {
+    getToken(code).then((data) => {
       console.log(data);
       console.log(data.access_token);
       setAccessToken(data.access_token);
+      navigate("/");
     });
-    navigate("/");
   }, []);
 
   return <div>Callback</div>;

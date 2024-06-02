@@ -10,9 +10,7 @@ export const Home = () => {
   useEffect(() => {
     if (accessToken !== null) {
       console.log(accessToken);
-      const data = fetchProfile(accessToken);
-      console.log(data);
-      data
+      fetchProfile(accessToken)
         .then((res) => {
           console.log(profile);
           console.log(res);
