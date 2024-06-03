@@ -22,7 +22,7 @@ export const Callback = () => {
 		if (!tokenFetchApiCalled) {
 			fetchToken();
 		}
-	}, []);
+	}, [fetchToken]);
 
 	return <div>Callback</div>;
 };
