@@ -10,11 +10,11 @@ export const Callback = () => {
 	const navigate = useNavigate();
 
 	const fetchToken = async () => {
+		tokenFetchApiCalled = true;
 		const urlParams = new URLSearchParams(window.location.search);
 		const code = urlParams.get("code");
 		const data = await getToken(code);
 		setAccessToken(data.access_token);
-		tokenFetchApiCalled = true;
 		navigate("/");
 	};
 
